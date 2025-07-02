@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-windows:
-    name: Build and Test Examples on Windows
+    name: Build Code Examples
     runs-on: windows-latest
     
     steps:
@@ -26,14 +26,6 @@ jobs:
     - name: Build solution
       run: dotnet build GroupDocs.Conversion.LowCode.Examples.sln --no-restore --configuration Release
       
-    - name: Build individual projects
-      run: |
-        echo "Building individual example projects..."
-        Get-ChildItem -Path "Examples" -Recurse -Filter "*.csproj" | ForEach-Object {
-          echo "Building $($_.FullName)"
-          dotnet build $_.FullName --configuration Release --no-restore
-        }
-        
     - name: List all projects
       run: |
         echo "=== All Projects in Solution ==="

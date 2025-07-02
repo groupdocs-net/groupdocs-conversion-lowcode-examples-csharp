@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build and Test Examples
+    name: Build Code Examples
     runs-on: ubuntu-latest
     
     steps:
@@ -32,14 +32,6 @@ jobs:
     - name: Build solution
       run: dotnet build GroupDocs.Conversion.LowCode.Examples.sln --no-restore --configuration Release
       
-    - name: Build individual projects
-      run: |
-        echo "Building individual example projects..."
-        find Examples -name "*.csproj" -type f | while read project; do
-          echo "Building $project"
-          dotnet build "$project" --configuration Release --no-restore
-        done
-        
     - name: List all projects
       run: |
         echo "=== All Projects in Solution ==="
