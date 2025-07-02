@@ -1,0 +1,45 @@
+# Save to Stream
+
+This example demonstrates how to perform save to stream using GroupDocs.Conversion.LowCode.
+
+## Overview
+
+This console application shows a practical implementation of Document conversion functionality.
+
+## Files
+
+### Input Files
+- Source document (specified in code)
+
+### Output Files
+- Converted output document (specified in code)
+
+## Running the Example
+
+1. Ensure you have .NET 6.0 or later installed
+2. Set your GroupDocs license keys as environment variables:
+   - `GD_PUBLIC_KEY`
+   - `GD_PRIVATE_KEY`
+3. Navigate to this directory
+4. Run the example:
+   ```bash
+   dotnet run
+   ```
+
+## Code Overview
+
+The main conversion logic is in `Program.cs`. The example demonstrates:
+- License setup
+- Document loading
+- Conversion configuration
+- Output generation
+
+## Requirements
+
+- .NET 6.0 or later
+- GroupDocs.Conversion.LowCode package
+- Valid GroupDocs license
+
+## Related Documentation
+
+For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/saving-converted-documents/).

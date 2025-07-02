@@ -1,0 +1,48 @@
+name: Build Examples (Linux)
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  build:
+    name: Build and Test Examples
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET 6.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+        
+    - name: Install Linux dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ttf-mscorefonts-installer libgdiplus fontconfig
+        sudo fc-cache -fv
+        
+    - name: Restore dependencies
+      run: dotnet restore GroupDocs.Conversion.LowCode.Examples.sln
+      
+    - name: Build solution
+      run: dotnet build GroupDocs.Conversion.LowCode.Examples.sln --no-restore --configuration Release
+      
+    - name: Build individual projects
+      run: |
+        echo "Building individual example projects..."
+        find Examples -name "*.csproj" -type f | while read project; do
+          echo "Building $project"
+          dotnet build "$project" --configuration Release --no-restore
+        done
+        
+    - name: List all projects
+      run: |
+        echo "=== All Projects in Solution ==="
+        find Examples -name "*.csproj" -type f | sort
+        echo "=== Total Projects ==="
+        find Examples -name "*.csproj" -type f | wc -l 
