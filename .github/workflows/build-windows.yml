@@ -20,12 +20,26 @@ jobs:
       with:
         dotnet-version: '6.0.x'
         
-    - name: Restore dependencies
-      run: dotnet restore GroupDocs.Conversion.LowCode.Examples.sln
-      
-    - name: Build solution
-      run: dotnet build GroupDocs.Conversion.LowCode.Examples.sln --no-restore --configuration Release
-      
+    - name: Build individual projects
+      run: |
+        echo "=== Building Individual Projects ==="
+        Get-ChildItem -Path "Examples" -Recurse -Filter "*.csproj" | Sort-Object FullName | ForEach-Object {
+          $project = $_.FullName
+          echo "Building: $project"
+          dotnet build "$project" --configuration Release --no-restore
+          if ($LASTEXITCODE -eq 0) {
+            echo "✓ Successfully built: $project"
+            # Clean up bin and obj folders to save space
+            $projectDir = Split-Path -Parent $project
+            if (Test-Path "$projectDir\bin") { Remove-Item "$projectDir\bin" -Recurse -Force }
+            if (Test-Path "$projectDir\obj") { Remove-Item "$projectDir\obj" -Recurse -Force }
+            echo "✓ Cleaned up: $projectDir"
+          } else {
+            echo "✗ Failed to build: $project"
+            exit 1
+          }
+        }
+        
     - name: List all projects
       run: |
         echo "=== All Projects in Solution ==="

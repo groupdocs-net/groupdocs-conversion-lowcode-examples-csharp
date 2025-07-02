@@ -26,12 +26,24 @@ jobs:
         sudo apt-get install -y ttf-mscorefonts-installer libgdiplus fontconfig
         sudo fc-cache -fv
         
-    - name: Restore dependencies
-      run: dotnet restore GroupDocs.Conversion.LowCode.Examples.sln
-      
-    - name: Build solution
-      run: dotnet build GroupDocs.Conversion.LowCode.Examples.sln --no-restore --configuration Release
-      
+    - name: Build individual projects
+      run: |
+        echo "=== Building Individual Projects ==="
+        find Examples -name "*.csproj" -type f | sort | while read project; do
+          echo "Building: $project"
+          dotnet build "$project" --configuration Release --no-restore
+          if [ $? -eq 0 ]; then
+            echo "✓ Successfully built: $project"
+            # Clean up bin and obj folders to save space
+            project_dir=$(dirname "$project")
+            rm -rf "$project_dir/bin" "$project_dir/obj"
+            echo "✓ Cleaned up: $project_dir"
+          else
+            echo "✗ Failed to build: $project"
+            exit 1
+          fi
+        done
+        
     - name: List all projects
       run: |
         echo "=== All Projects in Solution ==="
