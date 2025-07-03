@@ -258,14 +258,13 @@ Error: .NET 6.0 or later required
 ### **Getting Help:**
 - Check the example's individual `README.md` file
 - Review the [official documentation](https://docs.groupdocs.net/conversion/)
-- Visit the [GroupDocs support forum](https://forum.groupdocs.com/)
+- Visit the [GroupDocs support forum](https://forum.groupdocs.net/)
 
 ## 📚 Related Resources
 
 - **[Official Documentation](https://docs.groupdocs.net/conversion/)**: Complete API reference and guides
 - **[API Reference](https://reference.groupdocs.net/conversion/)**: Detailed class and method documentation
-- **[GitHub Repository](https://github.com/groupdocs-conversion)**: Source code and additional examples
-- **[Support Forum](https://forum.groupdocs.com/)**: Community support and discussions
+- **[Support Forum](https://forum.groupdocs.net/)**: Community support and discussions
 
 ## 📄 License
 
