@@ -100,6 +100,8 @@ The examples are organized to mirror the official documentation structure:
 │   │   ├── 📂 XlsxToPdfWithSpecificPdfFormat/
 │   │   └── 📂 XlsxWithHiddenSheetsToPdf/
 │   └── 📂 CopyTheCodeExample/
+├── 📄 GroupDocs.Conversion.LowCode.Examples.sln
+├── 📄 LICENSE
 ├── 📄 README.md
 ├── 🚀 run_all_examples.bat
 ├── 🚀 run_all_examples.ps1
