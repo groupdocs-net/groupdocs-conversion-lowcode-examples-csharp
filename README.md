@@ -13,7 +13,7 @@ This directory contains **70+ complete, runnable examples** demonstrating variou
 The examples are organized to mirror the official documentation structure:
 
 ```
-/
+groupdocs-conversion-lowcode-examples-csharp/
 ├── 📂 licensing/
 │   ├── 📂 SetLicenseFromFile/
 │   └── 📂 SetLicenseKeys/
