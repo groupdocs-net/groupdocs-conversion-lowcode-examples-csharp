@@ -1,45 +1,47 @@
-# XLS with Hidden Sheets
+# Convert XLS with Hidden Sheets
 
-This example demonstrates how to convert xls including hidden sheets using GroupDocs.Conversion.LowCode.
+By default hidden sheets are not added to the converted PDF document.
 
-## Overview
+The following example shows how to include hidden sheets when converting XLS to PDF using the `ShowHiddenSheets` property.
 
-This console application shows a practical implementation of Xls To Pdf conversion functionality.
+## Code Example
 
-## Files
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
 
-### Input Files
-- `hidden-sheets.xls` - Source document for conversion
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Output Files
-- `with-hidden-sheets.pdf` - Converted output document
+// Apply license
+License.Set(publicKey, privateKey);
 
-## Running the Example
+// Show hidden sheets through load options
+var converter = new XlsToPdfConverter("hidden-sheets.xls", options =>
+{
+    options.ShowHiddenSheets = true;
+});
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Convert XLS to PDF
+converter.Convert("with-hidden-sheets.pdf");
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `hidden-sheets.xls`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-xls-to-pdf-converter/).
+- [Using XLS to PDF Converter](https://docs.groupdocs.net/conversion/developer-guide/using-xls-to-pdf-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

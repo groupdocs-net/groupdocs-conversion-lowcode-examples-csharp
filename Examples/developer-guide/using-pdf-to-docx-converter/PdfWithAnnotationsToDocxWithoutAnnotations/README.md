@@ -1,45 +1,47 @@
-# PDF with Annotations to DOCX with out Annotations
+# Convert PDF with Annotations to DOCX without Annotations
 
-This example demonstrates how to convert pdf with annotations to PDF using GroupDocs.Conversion.LowCode.
+By default, annotations are added to the output DOCX file, see this [with-annotations.pdf](https://docs.groupdocs.net/conversion/_sample_files/developer-guide/using-pdf-to-docx-converter/with-annotations.pdf) (text `HOME BASED PROFESSIONAL SERVICES` is highlighted) as an example of PDF file with annotations.
 
-## Overview
+The following example shows how to convert a PDF file that contains annotations and save a DOCX file without annotations.
 
-This console application shows a practical implementation of Pdf To Docx conversion functionality.
+## Code Example
 
-## Files
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
 
-### Input Files
-- `with-annotations.pdf` - Source document for conversion
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Output Files
-- `no-annotations.docx` - Converted output document
+// Apply license
+License.Set(publicKey, privateKey);
 
-## Running the Example
+// Hide annotations using HidePdfAnnotations
+var converter = new PdfToDocxConverter("with-annotations.pdf", options =>
+{
+    options.HidePdfAnnotations = true;
+});
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Convert PDF to DOCX
+converter.Convert("no-annotations.docx");
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `with-annotations.pdf`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-docx-converter/).
+- [Using PDF to DOCX Converter](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-docx-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

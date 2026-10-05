@@ -1,45 +1,49 @@
-# Specific DOC Pages to PDF
+# Convert Specific DOC Pages to PDF
 
-This example demonstrates how to convert specific doc pages to PDF using GroupDocs.Conversion.LowCode.
+To convert only a portion of the document instead of all pages. You can specify which pages to include in the output PDF using the [Pages](https://reference.groupdocs.net/conversion/GroupDocs.Conversion.Options.Convert/IPagedConvertOptions/PageNumber/) property of `PdfConvertOptions` class.
 
-## Overview
+As an alternative you can use `PageNumber` to specify the page number to start conversion from and `PagesCount` to set number of pages to convert starting from `PageNumber`. 
 
-This console application shows a practical implementation of Doc To Pdf conversion functionality.
+The following example shows how to convert the first three pages of a DOC file to PDF:
 
-## Files
+## Code Example
 
-### Input Files
-- `business-plan.doc` - Source document for conversion
+```csharp
+using System;
+using System.Collections.Generic;
+using GroupDocs.Conversion.LowCode;
 
-### Output Files
-- `pages-1-2-3.pdf` - Converted output document
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-## Running the Example
+// Apply license
+License.Set(publicKey, privateKey);
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Create the converter
+var converter = new DocToPdfConverter("business-plan.doc");
+
+// Save first three pages to PDF
+converter.Convert("pages-1-2-3.pdf", (convertOptions) => {
+    convertOptions.Pages = new List<int> { 1, 2, 3 };
+});
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `business-plan.doc`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-doc-to-pdf-converter/).
+- [Using DOC to PDF Converter](https://docs.groupdocs.net/conversion/developer-guide/using-doc-to-pdf-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

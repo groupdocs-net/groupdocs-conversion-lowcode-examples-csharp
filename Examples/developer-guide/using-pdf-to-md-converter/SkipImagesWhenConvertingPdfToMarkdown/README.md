@@ -1,45 +1,45 @@
-# Skip ImagesWhen Converting PDF to Markdown
+# Skip Images when converting PDF to Markdown
 
-This example demonstrates how to convert skip imageswhen converting pdf to PDF using GroupDocs.Conversion.LowCode.
+By default, images are converted to base64 strings and embedded directly in the Markdown file. You can control this behavior using the [ExportImagesAsBase64](https://reference.groupdocs.net/conversion/GroupDocs.Conversion.Options.Convert/MarkdownOptions/ExportImagesAsBase64/) property in `MarkdownOptions` class. When set to `false`, images are not included into final Markdown file.
 
-## Overview
+## Code Example
 
-This console application shows a practical implementation of Pdf To Md conversion functionality.
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
 
-## Files
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Input Files
-- `business-plan.pdf` - Source document for conversion
+// Apply license
+License.Set(publicKey, privateKey);
 
-### Output Files
-- `without-images.md` - Converted output document
+// Create the converter
+var converter = new PdfToMdConverter("business-plan.pdf");
 
-## Running the Example
+        // Convert to Markdown without embedding images as base64
+        converter.Convert("without-images.md", convertOptions =>
+        {
+            convertOptions.MarkdownOptions.ExportImagesAsBase64 = false;
+        });
+```
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `business-plan.pdf`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-md-converter/).
+- [Using PDF to MD Converter](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-md-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

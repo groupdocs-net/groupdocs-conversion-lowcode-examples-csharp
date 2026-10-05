@@ -9,7 +9,7 @@ var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 // Apply license
 License.Set(publicKey, privateKey);
 
-// Provide password through load options
+// Create a converter for the DOCX file
 var converter = new DocxToPdfConverter("business-plan.docx");
 
 // Save first three pages to PDF

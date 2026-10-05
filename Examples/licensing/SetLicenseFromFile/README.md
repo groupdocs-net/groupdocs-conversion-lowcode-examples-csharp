@@ -1,49 +1,41 @@
-# Set License From File
+# Set License from File
 
-This example demonstrates how to set a license from a license file for GroupDocs.Conversion.LowCode.
+The following code demonstrates setting a license from a file:
 
-## Overview
+## Code Example
 
-This console application shows how to configure licensing for GroupDocs.Conversion.LowCode by loading license information from a license file.
+```csharp
+using GroupDocs.Conversion.LowCode;
 
-## Purpose
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        SetLicenseFromFile();
+    }
 
-Before using any GroupDocs.Conversion.LowCode functionality, you must set up licensing. This example shows the file-based approach using a license file.
+    private static void SetLicenseFromFile()
+    {
+        // The path to the license file. The path can be relative or absolute.
+        string licensePath = "./GroupDocs.Conversion.LowCode.lic";
 
-## Files
+        // Apply the license. 
+        License.Set(licensePath);
+    }
+}
+```
 
-### Input Files
-- `GroupDocs.Conversion.LowCode.lic` - License file (you need to provide this)
+## How to Run
 
-### Output Files
-- None (this example only sets up licensing)
-
-## Code Overview
-
-The main licensing logic is in `Program.cs`. The example demonstrates:
-- License file setup using `License.Set(licensePath)`
-- Proper license initialization before using conversion features
-
-## Running the Example
-
-1. Ensure you have .NET 6.0 or later installed
-2. Place your license file in this directory with the name `GroupDocs.Conversion.LowCode.lic`
-3. Navigate to this directory
-4. Run the example:
+1. Install the .NET SDK for `net10.0`.
+2. Edit `Program.cs` so that it uses your license: the path to your license file, or your public and private keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license file
-
-## Security Note
-
-⚠️ **Important**: Never commit actual license files to source control. Use secure file storage and access controls in production applications.
-
-## Related Documentation
-
-For more information about licensing, see the [GroupDocs.Conversion.LowCode licensing documentation](https://docs.groupdocs.net/conversion/licensing/).
+- [Licensing](https://docs.groupdocs.net/conversion/licensing/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

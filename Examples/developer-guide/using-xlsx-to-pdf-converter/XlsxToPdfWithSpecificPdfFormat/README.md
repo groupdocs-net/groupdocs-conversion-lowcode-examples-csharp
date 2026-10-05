@@ -1,45 +1,48 @@
-# XLSX to PDF with Specific PDF Format
+# Convert XLSX to PDF with Specific PDF Format
 
-This example demonstrates how to convert xlsx to PDF using GroupDocs.Conversion.LowCode.
+You can specify the PDF format for the output file using the [PdfFormat](https://reference.groupdocs.net/conversion/GroupDocs.Conversion.Options.Convert/PdfOptions/PdfFormat/) property in `PdfOptions` class. This allows you to create PDF files that conform to specific standards like PDF/A for archiving or PDF/X for print production.
 
-## Overview
+The following example shows how to convert an XLSX file to PDF/A-1b format, which is commonly used for long-term archiving:
 
-This console application shows a practical implementation of Xlsx To Pdf conversion functionality.
+## Code Example
 
-## Files
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
+using GroupDocs.Conversion.Options.Convert;
 
-### Input Files
-- `cost-analysis.xlsx` - Source document for conversion
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Output Files
-- `archived-cost-analysis.pdf` - Converted output document
+// Apply license
+License.Set(publicKey, privateKey);
 
-## Running the Example
+// Create the converter
+var converter = new XlsxToPdfConverter("cost-analysis.xlsx");
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Convert to PDF/A-1b format for archiving
+converter.Convert("archived-cost-analysis.pdf", convertOptions =>
+{
+    convertOptions.PdfOptions.PdfFormat = PdfFormats.PdfA_1B;
+});
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `cost-analysis.xlsx`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-xlsx-to-pdf-converter/).
+- [Using XLSX to PDF Converter](https://docs.groupdocs.net/conversion/developer-guide/using-xlsx-to-pdf-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

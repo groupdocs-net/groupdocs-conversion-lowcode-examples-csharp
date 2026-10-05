@@ -11,5 +11,5 @@ License.Set(publicKey, privateKey);
 // Create a converter for the DOCX file
 var converter = new DocxToPdfConverter("business-plan.docx");
 
-// Convert DOCX as PDF
+// Convert DOCX to PDF
 converter.Convert("business-plan.pdf");

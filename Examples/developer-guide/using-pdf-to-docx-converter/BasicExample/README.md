@@ -1,45 +1,42 @@
 # Basic Example
 
-This example demonstrates how to perform basic document conversion using GroupDocs.Conversion.LowCode.
+The following example shows the most common use case for converting PDF document to DOCX. The source PDF file is loaded from a current folder. The converted file is saved to the same folder.
 
-## Overview
+## Code Example
 
-This console application shows a practical implementation of Pdf To Docx conversion functionality.
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
 
-## Files
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Input Files
-- `business-plan.pdf` - Source document for conversion
+// Apply the license
+License.Set(publicKey, privateKey);
 
-### Output Files
-- `business-plan.docx` - Converted output document
+// Create a converter for the PDF file
+var converter = new PdfToDocxConverter("business-plan.pdf");
 
-## Running the Example
+// Convert PDF to DOCX
+converter.Convert("business-plan.docx");
+```
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `business-plan.pdf`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-docx-converter/).
+- [Using PDF to DOCX Converter](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-docx-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

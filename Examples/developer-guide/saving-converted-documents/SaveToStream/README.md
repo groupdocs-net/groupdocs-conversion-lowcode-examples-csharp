@@ -1,45 +1,49 @@
-# Save to Stream
+# Example 2: Save to Stream
 
-This example demonstrates how to perform save to stream using GroupDocs.Conversion.LowCode.
+This example demonstrates how to save the converted file to a `Stream`.
 
-## Overview
+## Code Example
 
-This console application shows a practical implementation of Document conversion functionality.
+```csharp
+using System;
+using System.IO;
+using GroupDocs.Conversion.LowCode;
 
-## Files
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Input Files
-- Source document (specified in code)
+// Apply license
+License.Set(publicKey, privateKey);
 
-### Output Files
-- Converted output document (specified in code)
+// Load DOCX file as stream
+using var stream = File.OpenRead("business-plan.docx");
 
-## Running the Example
+// Create a converter from stream
+var converter = new DocxToPdfConverter(stream);
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Instantiate output file stream
+using var convertedFile = File.Create("business-plan.pdf");
+
+// Convert DOCX to PDF
+converter.Convert(convertedFile);
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `business-plan.docx`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/saving-converted-documents/).
+- [Saving Converted Documents](https://docs.groupdocs.net/conversion/developer-guide/saving-converted-documents/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

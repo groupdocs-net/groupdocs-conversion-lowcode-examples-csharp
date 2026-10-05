@@ -1,57 +1,41 @@
-# Copy the Code Example
+# Step 5: Copy the Code Example
 
-This example demonstrates a template for copying and using GroupDocs.Conversion.LowCode code.
+Replace the contents of your `Program` file with the example code below.
 
-## Overview
+## Code Example
 
-This console application shows a practical template that you can copy and modify for your own conversion needs.
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
 
-## Purpose
+// Load license keys from environment variables
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-This is a **"Copy the Code"** example that provides:
-- A complete working template for XLSX to PDF conversion
-- License setup using environment variables
-- Basic conversion workflow
-- Code structure you can adapt for other file types
+License.Set(publicKey, privateKey);
 
-## Files
+// Create a converter for an XLSX file
+var converter = new XlsxToPdfConverter("cost-analysis.xlsx");
 
-### Input Files
-- `cost-analysis.xlsx` - Source document for conversion
+// Convert to PDF
+converter.Convert("cost-analysis.pdf");
+```
 
-### Output Files
-- `cost-analysis.pdf` - Converted output document
+## How to Run
 
-## Running the Example
-
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The template code in `Program.cs` demonstrates:
-- License setup from environment variables
-- XLSX to PDF converter creation
-- Basic conversion workflow
-- Simple file output
+- `cost-analysis.xlsx`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license keys
-
-## Usage
-
-Copy this code and modify it for your specific conversion needs. Change the converter type and file names as required.
-
-## Related Documentation
-
-For more information about converters, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/).
+- [Developer Guide](https://docs.groupdocs.net/conversion/developer-guide/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

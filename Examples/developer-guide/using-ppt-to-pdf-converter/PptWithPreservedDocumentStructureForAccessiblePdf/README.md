@@ -1,45 +1,45 @@
-# PPT with Preserved DOCument StructureFor Accessible PDF
+# Convert PPT with Preserved Document Structure for Accessible PDF
 
-This example demonstrates how to convert ppt including preserved document structurefor accessible pdf using GroupDocs.Conversion.LowCode.
+The following example shows how to convert a PPT file to an accessible PDF by preserving the document structure using the `PreserveDocumentStructure` property. This is useful for creating PDFs that are more accessible to screen readers and assistive technologies.
 
-## Overview
+## Code Example
 
-This console application shows a practical implementation of Ppt To Pdf conversion functionality.
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
 
-## Files
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Input Files
-- `presentation.ppt` - Source document for conversion
+// Apply license
+License.Set(publicKey, privateKey);
 
-### Output Files
-- `accessible.pdf` - Converted output document
+// Preserve document structure for accessible PDF
+var converter = new PptToPdfConverter("presentation.ppt", options =>
+{
+    options.PreserveDocumentStructure = true;
+});
 
-## Running the Example
+// Convert PPT to accessible PDF
+converter.Convert("accessible.pdf");
+```
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `presentation.ppt`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-ppt-to-pdf-converter/).
+- [Using PPT to PDF Converter](https://docs.groupdocs.net/conversion/developer-guide/using-ppt-to-pdf-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

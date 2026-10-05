@@ -1,45 +1,48 @@
-# PDF to DOCX with A4PageSize
+# Convert PDF to DOCX with A4 Page Size
 
-This example demonstrates how to convert pdf to PDF using GroupDocs.Conversion.LowCode.
+You can specify the page size for the output DOCX file using the [SizeSettings](https://reference.groupdocs.net/conversion/GroupDocs.Conversion.Options.Convert/WordProcessingConvertOptions/SizeSettings/) property of the `WordProcessingConvertOptions` class, which takes a [PageSizeOptions](https://reference.groupdocs.net/conversion/GroupDocs.Conversion.Options/PageSizeOptions/) object.
 
-## Overview
+The following example shows how to convert a PDF file to DOCX with A4 page size:
 
-This console application shows a practical implementation of Pdf To Docx conversion functionality.
+## Code Example
 
-## Files
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
+using GroupDocs.Conversion.Options;
 
-### Input Files
-- `business-plan.pdf` - Source document for conversion
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Output Files
-- `a4-size.docx` - Converted output document
+// Apply license
+License.Set(publicKey, privateKey);
 
-## Running the Example
+// Create the converter
+var converter = new PdfToDocxConverter("business-plan.pdf");
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Convert to DOCX with A4 page size
+converter.Convert("a4-size.docx", convertOptions =>
+{
+    convertOptions.SizeSettings = new PageSizeOptions { PageSize = PageSize.A4 };
+});
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `business-plan.pdf`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-docx-converter/).
+- [Using PDF to DOCX Converter](https://docs.groupdocs.net/conversion/developer-guide/using-pdf-to-docx-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

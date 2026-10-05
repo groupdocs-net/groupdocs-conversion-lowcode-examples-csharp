@@ -1,45 +1,47 @@
-# Set Convert Options
+# Example 3: Set Convert Options
 
-This example demonstrates how to perform set convert options using GroupDocs.Conversion.LowCode.
+You can use optional convert options to adjust the output according to your requirements. Each converter has its own corresponding convert options.
 
-## Overview
+The following code example shows how to set convert options to convert the first three pages of a DOCX document to a PDF file.
 
-This console application shows a practical implementation of Document conversion functionality.
+## Code Example
 
-## Files
+```csharp
+using System;
+using System.Collections.Generic;
+using GroupDocs.Conversion.LowCode;
 
-### Input Files
-- `business-plan.docx` - Source document for conversion
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Output Files
-- `pages-1-2-3.pdf` - Converted output document
+// Apply license
+License.Set(publicKey, privateKey);
 
-## Running the Example
+// Create a converter for the DOCX file
+var converter = new DocxToPdfConverter("business-plan.docx");
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Save first three pages to PDF
+converter.Convert("pages-1-2-3.pdf", (convertOptions) => {
+    convertOptions.Pages = new List<int> { 1, 2, 3 };
+});
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `business-plan.docx`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/saving-converted-documents/).
+- [Saving Converted Documents](https://docs.groupdocs.net/conversion/developer-guide/saving-converted-documents/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)

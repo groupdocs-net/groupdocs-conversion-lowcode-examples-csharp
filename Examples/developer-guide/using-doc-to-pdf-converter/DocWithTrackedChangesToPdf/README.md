@@ -1,45 +1,47 @@
-# DOC with Tracked Changes to PDF
+# Convert DOC with Tracked Changes to PDF
 
-This example demonstrates how to convert doc with tracked changes to PDF using GroupDocs.Conversion.LowCode.
+By default, tracked changes are converted and displayed in the output PDF document. See this [tracked-changes.pdf](https://docs.groupdocs.net/conversion/_sample_files/developer-guide/using-doc-to-pdf-converter/tracked-changes.pdf) that includes the list of changes.
 
-## Overview
+The following example shows how to convert a DOC file that contains tracked changes and save a clean PDF file without those revisions.
 
-This console application shows a practical implementation of Doc To Pdf conversion functionality.
+## Code Example
 
-## Files
+```csharp
+using System;
+using GroupDocs.Conversion.LowCode;
 
-### Input Files
-- `tracked-changes.doc` - Source document for conversion
+// Load license keys
+var publicKey = Environment.GetEnvironmentVariable("GD_PUBLIC_KEY");
+var privateKey = Environment.GetEnvironmentVariable("GD_PRIVATE_KEY");
 
-### Output Files
-- `clean.pdf` - Converted output document
+// Apply license
+License.Set(publicKey, privateKey);
 
-## Running the Example
+// Hide tracked changes through load options
+var converter = new DocToPdfConverter("tracked-changes.doc", options =>
+{
+    options.HideWordTrackedChanges = true;
+});
 
-1. Ensure you have .NET 6.0 or later installed
-2. Set your GroupDocs license keys as environment variables:
-   - `GD_PUBLIC_KEY`
-   - `GD_PRIVATE_KEY`
-3. Navigate to this directory
-4. Run the example:
+// Convert DOC to PDF
+converter.Convert("clean.pdf");
+```
+
+## How to Run
+
+1. Install the .NET SDK for `net10.0`.
+2. Set the `GD_PUBLIC_KEY` and `GD_PRIVATE_KEY` environment variables to your license keys.
+3. Open this directory and run the example:
    ```bash
    dotnet run
    ```
 
-## Code Overview
+## Input Files
 
-The main conversion logic is in `Program.cs`. The example demonstrates:
-- License setup
-- Document loading
-- Conversion configuration
-- Output generation
+- `tracked-changes.doc`
 
-## Requirements
+## Learn More
 
-- .NET 6.0 or later
-- GroupDocs.Conversion.LowCode package
-- Valid GroupDocs license
-
-## Related Documentation
-
-For more information about this conversion type, see the [GroupDocs.Conversion.LowCode documentation](https://docs.groupdocs.net/conversion/developer-guide/using-doc-to-pdf-converter/).
+- [Using DOC to PDF Converter](https://docs.groupdocs.net/conversion/developer-guide/using-doc-to-pdf-converter/) in the GroupDocs.Conversion.LowCode documentation
+- [GroupDocs.Conversion.LowCode](https://www.nuget.org/packages/GroupDocs.Conversion.LowCode) on NuGet
+- [Get a temporary license](https://purchase.groupdocs.net/temporary-license/)
